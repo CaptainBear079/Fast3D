@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Fast3D
+Description: Fast3D render engine
+Version: @VERSION@
+
+Libs: -L${libdir} -lFast3D
+Cflags: -I${includedir}
