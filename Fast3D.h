@@ -83,5 +83,5 @@ typedef struct _Renderer_ {
 // Function declerations
 Renderer* Fast3D__init(int fb_width, int fb_height, double FOV);
 void Fast3D__destroy(Renderer* renderer);
-int Fast3D__render(Renderer* renderer);
+int Fast3D__simpleRender(Renderer* renderer, bool fillTriangles);
 void Fast3D__addMesh(Renderer* renderer, Mesh* mesh);

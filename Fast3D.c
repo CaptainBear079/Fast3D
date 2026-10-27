@@ -1,6 +1,7 @@
 // Includes
 #include "Fast3D.h"
 
+// INDEV
 // OBJ loader function
 Mesh* openOBJ(const char* path) {
 	// Open .obj file
@@ -305,6 +306,7 @@ Renderer* Fast3D__init(int fb_width, int fb_height, double FOV) {
 			renderer->RotationMatrixZ[i][j] = 0.0;
 		}
 	}
+	renderer->rmTheta = 0.0;
 
 	// Set Rasterization
 	renderer->rSX = 0;
@@ -342,7 +344,7 @@ void Fast3D__destroy(Renderer* renderer) {
 }
 
 // Render function
-int Fast3D__render(Renderer* renderer) {
+int Fast3D__simpleRender(Renderer* renderer, bool fillTriangles) {
 	// Measure Elapse time
 	clock_t now = clock();
 	renderer->ElapsedTime = (double)(now - renderer->then) / (double)CLOCKS_PER_SEC;
@@ -477,7 +479,7 @@ int Fast3D__render(Renderer* renderer) {
 				renderer->projectedMesh[m].triangles[t].v[1].y *= 0.5 * renderer->fbHeight;
 				renderer->projectedMesh[m].triangles[t].v[2].y *= 0.5 * renderer->fbHeight;
 
-				Fast3D__drawTriangle(renderer, m, t, true, temp2);
+				Fast3D__drawTriangle(renderer, m, t, fillTriangles, temp2);
 			}
 		}
 	}
